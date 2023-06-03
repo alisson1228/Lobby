@@ -41,12 +41,12 @@
                     <div class="main-usuarios-config-user">
                         <img src="assent/avatar/avatar1.png" alt="">
                         <p>Alisson</p>
-                        <div class="curtida sem">
+                        <div class="curtida sem" id="coracao">
                             <ion-icon name="heart" class="curti"></ion-icon>
                             <p>0</p>
                         </div>
                     </div>
-                    <div class="main-usuarios-config-exit">
+                    <div class="main-usuarios-config-exit" onclick="out()">
                         <ion-icon name="log-out-outline"></ion-icon>
                     </div>
                 </div>
@@ -269,6 +269,115 @@
         
     </script>
     <script>
+        function mainUserDiv({nome, avatar}) {
+            const usersList = document.querySelector('#usuarios')
+            // Cria a div principal
+            var divPrincipal = document.createElement("div");
+            divPrincipal.classList.add("main-usuarios-config");
+
+            // Cria a div do usuário
+            var divUsuario = document.createElement("div");
+            divUsuario.classList.add("main-usuarios-config-user");
+
+            // Cria a tag de imagem do usuário
+            var imgUsuario = document.createElement("img");
+            imgUsuario.src = avatar
+            imgUsuario.alt = "";
+
+            // Cria o parágrafo com o nome do usuário
+            var pUsuario = document.createElement("p");
+            pUsuario.innerText = nome
+
+            // Cria a div de curtida do usuário
+            var divCurtidaUsuario = document.createElement("div");
+            divCurtidaUsuario.classList.add("curtida", "sem");
+
+            // Cria o ícone de coração curtido do usuário
+            var iconCurtidoUsuario = document.createElement("ion-icon");
+            iconCurtidoUsuario.name = "heart";
+            iconCurtidoUsuario.classList.add("curti");
+
+            // Cria o parágrafo com o número de curtidas do usuário
+            var pCurtidasUsuario = document.createElement("p");
+            pCurtidasUsuario.innerText = "0";
+
+            // Adiciona os elementos filhos à div de curtida do usuário
+            divCurtidaUsuario.appendChild(iconCurtidoUsuario);
+            divCurtidaUsuario.appendChild(pCurtidasUsuario);
+
+            // Adiciona os elementos filhos à div do usuário
+            divUsuario.appendChild(imgUsuario);
+            divUsuario.appendChild(pUsuario);
+            divUsuario.appendChild(divCurtidaUsuario);
+
+            // Cria a div de saída
+            var divSaida = document.createElement("div");
+            divSaida.classList.add("main-usuarios-config-exit");
+
+            // Cria o ícone de saída
+            var iconSaida = document.createElement("ion-icon");
+            iconSaida.name = "log-out-outline";
+
+            // Adiciona o ícone de saída à div de saída
+            divSaida.appendChild(iconSaida);
+
+            // Adiciona os elementos filhos à div principal
+            divPrincipal.appendChild(divUsuario);
+            divPrincipal.appendChild(divSaida);
+
+            // Adiciona a div principal ao corpo do documento HTML
+            usersList.appendChild(divPrincipal);
+        }
+
+        function userDiv({nome, avatar, id}) {
+            const usersList = document.querySelector('#usuarios')
+            // Cria a div principal
+            var divPrincipal = document.createElement("div");
+            divPrincipal.classList.add("main-usuarios-user");
+            divPrincipal.id = id
+
+            // Cria a tag de imagem
+            var img = document.createElement("img");
+            img.src = avatar
+            img.alt = "";
+
+            // Cria o parágrafo com o nome
+            var p = document.createElement("p");
+            p.innerText = nome
+
+            // Cria a div de curtida
+            var divCurtida = document.createElement("div");
+            divCurtida.classList.add("curtida", "sem");
+
+            // Cria o ícone de coração não curtido
+            var iconNaoCurtido = document.createElement("ion-icon");
+            iconNaoCurtido.name = "heart-outline";
+            iconNaoCurtido.classList.add("nocurti");
+
+            // Cria o ícone de coração curtido
+            var iconCurtido = document.createElement("ion-icon");
+            iconCurtido.name = "heart";
+            iconCurtido.classList.add("curti");
+
+            // Cria o parágrafo com o número de curtidas
+            var pCurtidas = document.createElement("p");
+            pCurtidas.innerText = "0";
+
+            // Adiciona os elementos filhos à div de curtida
+            divCurtida.appendChild(iconNaoCurtido);
+            divCurtida.appendChild(iconCurtido);
+            divCurtida.appendChild(pCurtidas);
+
+            // Adiciona os elementos filhos à div principal
+            divPrincipal.appendChild(img);
+            divPrincipal.appendChild(p);
+            divPrincipal.appendChild(divCurtida);
+
+            // Adiciona a div principal ao corpo do documento HTML
+            usersList.appendChild(divPrincipal);
+
+        }
+
         const socket = io()
         
         
@@ -286,116 +395,16 @@
         socket.on('pessoas conectadas', (users) => {
             const usersList = document.querySelector('#usuarios')
             usersList.innerHTML = ''
-            
-            for (let i in users) {
-                console.log(users[i])
-                console.log(users[i].socketID, socket.id)
-                if (String(users[i].socketID) == String(socket.id)) {
-                     
-                    // Cria a div principal
-                    var divPrincipal = document.createElement("div");
-                    divPrincipal.classList.add("main-usuarios-config");
-
-                    // Cria a div do usuário
-                    var divUsuario = document.createElement("div");
-                    divUsuario.classList.add("main-usuarios-config-user");
-
-                    // Cria a tag de imagem do usuário
-                    var imgUsuario = document.createElement("img");
-                    imgUsuario.src = "assent/avatar/avatar4.png"
-                    imgUsuario.alt = "";
-
-                    // Cria o parágrafo com o nome do usuário
-                    var pUsuario = document.createElement("p");
-                    pUsuario.innerText = "Alisson"
-
-                    // Cria a div de curtida do usuário
-                    var divCurtidaUsuario = document.createElement("div");
-                    divCurtidaUsuario.classList.add("curtida", "sem");
-
-                    // Cria o ícone de coração curtido do usuário
-                    var iconCurtidoUsuario = document.createElement("ion-icon");
-                    iconCurtidoUsuario.name = "heart";
-                    iconCurtidoUsuario.classList.add("curti");
-
-                    // Cria o parágrafo com o número de curtidas do usuário
-                    var pCurtidasUsuario = document.createElement("p");
-                    pCurtidasUsuario.innerText = "0";
-
-                    // Adiciona os elementos filhos à div de curtida do usuário
-                    divCurtidaUsuario.appendChild(iconCurtidoUsuario);
-                    divCurtidaUsuario.appendChild(pCurtidasUsuario);
-
-                    // Adiciona os elementos filhos à div do usuário
-                    divUsuario.appendChild(imgUsuario);
-                    divUsuario.appendChild(pUsuario);
-                    divUsuario.appendChild(divCurtidaUsuario);
-
-                    // Cria a div de saída
-                    var divSaida = document.createElement("div");
-                    divSaida.classList.add("main-usuarios-config-exit");
-
-                    // Cria o ícone de saída
-                    var iconSaida = document.createElement("ion-icon");
-                    iconSaida.name = "log-out-outline";
-
-                    // Adiciona o ícone de saída à div de saída
-                    divSaida.appendChild(iconSaida);
-
-                    // Adiciona os elementos filhos à div principal
-                    divPrincipal.appendChild(divUsuario);
-                    divPrincipal.appendChild(divSaida);
-
-                    // Adiciona a div principal ao corpo do documento HTML
-                    usersList.appendChild(divPrincipal);
-                } else {
-                    // Cria a div principal
-                    var divPrincipal = document.createElement("div");
-                    divPrincipal.classList.add("main-usuarios-user");
-
-                    // Cria a tag de imagem
-                    var img = document.createElement("img");
-                    img.src = "assent/avatar/avatar4.png"
-                    img.alt = "";
-
-                    // Cria o parágrafo com o nome
-                    var p = document.createElement("p");
-                    p.innerText = "i.nome"
-
-                    // Cria a div de curtida
-                    var divCurtida = document.createElement("div");
-                    divCurtida.classList.add("curtida", "sem");
-
-                    // Cria o ícone de coração não curtido
-                    var iconNaoCurtido = document.createElement("ion-icon");
-                    iconNaoCurtido.name = "heart-outline";
-                    iconNaoCurtido.classList.add("nocurti");
-
-                    // Cria o ícone de coração curtido
-                    var iconCurtido = document.createElement("ion-icon");
-                    iconCurtido.name = "heart";
-                    iconCurtido.classList.add("curti");
-
-                    // Cria o parágrafo com o número de curtidas
-                    var pCurtidas = document.createElement("p");
-                    pCurtidas.innerText = "0";
-
-                    // Adiciona os elementos filhos à div de curtida
-                    divCurtida.appendChild(iconNaoCurtido);
-                    divCurtida.appendChild(iconCurtido);
-                    divCurtida.appendChild(pCurtidas);
-
-                    // Adiciona os elementos filhos à div principal
-                    divPrincipal.appendChild(img);
-                    divPrincipal.appendChild(p);
-                    divPrincipal.appendChild(divCurtida);
-
-                    // Adiciona a div principal ao corpo do documento HTML
-                    usersList.appendChild(divPrincipal);
-
+            for (let i in users) 
+                if (users[i].socketID == socket.id) {
+                    mainUserDiv(users[i])
+                    break
                 }
-            }
+            
+            for (let i in users)
+                if (users[i].socketID != socket.id) {
+                    userDiv(users[i])
+                }
         })
-
     </script>
 </html>

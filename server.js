@@ -33,15 +33,25 @@ app.post('/login', (req, res) => {
     req.body.id = uuidv4()
     pessoas[req.body.id] = req.body
 
-    console.log(pessoas)
-
     res.redirect('/chat?id=' + req.body.id)
 })
+
+function verificacao(req,res,next) {
+    const url = req.url
+    const regex = /[?&]id=([^&#]*)/i
+    const match = regex.exec(url)
+    const id = match && match[1]
+
+    if (pessoas[id])
+        next()
+    else 
+        res.redirect('/login')
+}
 
 
 //
 
-app.get('/chat', (req, res) => {
+app.get('/chat',verificacao, (req, res) => {
     res.sendFile(__dirname + '/chat/chat.html')
 })
 
@@ -50,14 +60,24 @@ app.get('/chat', (req, res) => {
 sockets.on('connection', (socket) => {
     console.log(socket.id)
 
+
     socket.on('identificacao', (id) => {
-        pessoas[id].socketID = socket.id
+        if (pessoas[id])
+            pessoas[id].socketID = socket.id
         console.log(pessoas)
         
-        socket.emit('pessoas conectadas', pessoas)
+        sockets.emit('pessoas conectadas', pessoas)
     })
 
-    
+    socket.on('disconnect', () => {
+        for (let i in pessoas) {
+            if (pessoas[i].socketID === socket.id) {
+                console.log(pessoas[i] + 'excluido')
+                delete pessoas[i]
+                sockets.emit('pessoas conectadas', pessoas)
+            }
+        }
+    })
 })
 
 
