@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fresca&family=Montserrat:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assent/favicon.ico" type="image/x-icon">
+    <title>Lobby</title>
+</head>
+<body>
+    <header class="header">
+        <img src="assent/Untitled-fig (1).png" alt="">
+    </header>
+    <main class="main">
+        <div class="main-infor">
+            <img src="assent/vecteezy_people-working-and-meeting-illustration_-ai (1).png" alt="">
+            <p>Conecte-se com o <span>mundo</span>, conheça novas pessoas e expanda seus horizontes - tudo em um só lugar. Nosso <span>LOBBY</span> é a plataforma perfeita para fazer <span>amigos</span>, tirar dúvidas e compartilhar <span>ideias</span>, sempre com respeito e tolerância. <span>Junte-se a nós e descubra um universo de possibilidades!</span></p>
+        </div>
+        <div class="main-form">
+            <div class="main-form-img">
+                <img src="assent/avatar/avatar1.png" alt="" id="avataimg">
+                <div class="edite" id="edite"><ion-icon name="color-palette-outline"></ion-icon></div>
+            </div>
+            
+            <div class="main-form-nome">
+                <label class="main-form-nome-label" for="nome">Escreva seu nome</label>
+                <input class="main-form-nome-input" type="text" id="nome">
+            </div>
+
+            <button class="main-form-enviar">Entrar</button>
+        </div>
+    </main>
+    <div class="alter" id="editor">
+        <div class="alter-content">
+            <div class="exit" id="exit">
+                <ion-icon name="close-outline"></ion-icon>
+            </div>
+            <div class="alter-content-options">
+                <div class="line">
+                    <label for="a1"><img id="av1" class="option active" src="assent/avatar/avatar1.png" alt=""></label>
+                    <label for="a2"><img id="av2" class="option" src="assent/avatar/avatar2.png" alt=""></label>
+                </div>
+                <div class="line">
+                    <label for="a3"><img id="av3" class="option" src="assent/avatar/avatar3.png" alt=""></label>
+                    <label for="a4"><img id="av4" class="option" src="assent/avatar/avatar4.png" alt=""></label>
+                </div>
+                <input style="display: none;" type="radio" name="avatar" value="1" id="a1" checked>
+                <input style="display: none;" type="radio" name="avatar" value="2" id="a2">
+                <input style="display: none;" type="radio" name="avatar" value="3" id="a3">
+                <input style="display: none;" type="radio" name="avatar" value="4" id="a4">
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    //config content avatar
+    var exit = document.getElementById("exit");
+    var edite = document.getElementById("edite");
+    var editor = document.getElementById("editor");
+
+    exit.addEventListener("click", () => {
+        editor.classList.remove("active");
+    })
+
+    edite.addEventListener("click", () => {
+        editor.classList.add("active");
+    })
+</script>
+<script>
+    //avatar select
+    var avatar1 = document.getElementById("a1");
+    var avatar2 = document.getElementById("a2");
+    var avatar3 = document.getElementById("a3");
+    var avatar4 = document.getElementById("a4");
+    var av1 = document.getElementById("av1");
+    var av2 = document.getElementById("av2");
+    var av3 = document.getElementById("av3");
+    var av4 = document.getElementById("av4");
+    var avataimg = document.getElementById("avataimg");
+
+    avatar1.addEventListener("change", () => {
+        if (avatar1.checked) {
+            avataimg.src = "assent/avatar/avatar1.png";
+            av1.classList.add("active");
+            av2.classList.remove("active");
+            av3.classList.remove("active");
+            av4.classList.remove("active");
+        }
+    });
+
+    avatar2.addEventListener("change", () => {
+        if (avatar2.checked) {
+            avataimg.src = "assent/avatar/avatar2.png";
+            av1.classList.remove("active");
+            av2.classList.add("active");
+            av3.classList.remove("active");
+            av4.classList.remove("active");
+        }
+    });
+
+    avatar3.addEventListener("change", () => {
+        if (avatar3.checked) {
+            avataimg.src = "assent/avatar/avatar3.png";
+            av1.classList.remove("active");
+            av2.classList.remove("active");
+            av3.classList.add("active");
+            av4.classList.remove("active");
+        }
+    });
+
+    avatar4.addEventListener("change", () => {
+        if (avatar4.checked) {
+            avataimg.src = "assent/avatar/avatar4.png";
+            av1.classList.remove("active");
+            av2.classList.remove("active");
+            av3.classList.remove("active");
+            av4.classList.add("active");
+        }
+    });
+
+    //login
+    function login() {
+        const nome = document.querySelector('#nome').value
+        const foto = avataimg.src
+
+        const data = {
+            nome: nome,
+            avatar: foto
+        }
+        
+        const option = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        }
+
+        fetch('/login', option)
+        .then(response => {
+            if (response.redirected) {
+                window.location.href = response.url
+            } else {
+                console.error('falha no login')
+            }
+        })
+        .catch(error => {
+            console.error('ERROr:', error)
+        });
+        
+    }
+    const entrar = document.querySelector('.main-form-enviar')
+    entrar.addEventListener('click', login)
+</script>
+</html>

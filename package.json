@@ -1,0 +1,27 @@
+{
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "lobby",
+  "description": "Chat de conversa global",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alisson1228/Lobby.git"
+  },
+  "keywords": [
+    "senha_senha"
+  ],
+  "author": "Alisson e Gabriel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alisson1228/Lobby/issues"
+  },
+  "homepage": "https://github.com/alisson1228/Lobby#readme",
+  "dependencies": {
+    "uuid": "^9.0.0",
+    "express": "^4.18.2",
+    "socket.io": "^4.6.2"
+  }
+}
