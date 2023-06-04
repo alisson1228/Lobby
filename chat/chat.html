@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fresca&family=Montserrat:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+        <link rel="stylesheet" href="css/chat.css">
+        <link rel="icon" href="assent/favicon.ico" type="image/x-icon">
+        <title>Lobby</title>
+    </head>
+    <body>
+        <header class="header">
+            <img class="header-logo" src="assent/Untitled-fig (1).png" alt="Logo">
+            <div class="header-config" id="header">
+                <div class="header-config-user">
+                    <img src="assent/avatar/avatar1.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                <div class="header-config-exit">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                </div>
+                <div class="header-config-menu" id="menu">
+                    <span class="line" id="l1"></span>
+                    <span class="line" id="l2"></span>
+                    <span class="line" id="l3"></span>
+                </div>
+            </div>
+        </header>
+        <main class="main">
+            <div class="main-usuarios" id="usuarios">
+                <div class="main-usuarios-config">
+                    <div class="main-usuarios-config-user">
+                        <img src="assent/avatar/avatar1.png" alt="">
+                        <p>Alisson</p>
+                        <div class="curtida sem" id="coracao">
+                            <ion-icon name="heart" class="curti"></ion-icon>
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div class="main-usuarios-config-exit" onclick="out()">
+                        <ion-icon name="log-out-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar4.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar4.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar4.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar2.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar4.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar1.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar4.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar2.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar4.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+                
+                <div class="main-usuarios-user">
+                    <img src="assent/avatar/avatar1.png" alt="">
+                    <p>Alisson</p>
+                    <div class="curtida sem">
+                        <ion-icon name="heart-outline" class="nocurti"></ion-icon>
+                        <ion-icon name="heart" class="curti"></ion-icon>
+                        <p>0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="main-conversa" id="conversa_cont">
+                <div class="main-conversa-mensagens" id="conversa">
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Premium designed icons for use in web, iOS, Android, and desktop apps. Support for SVG and web font. sempletely open source, MIT licensed and built by Ionic.</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem meu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Premium designed icons for use in web, iOS, Android, and desktop apps. Support for SVG and web font. sempletely open source, MIT licensed and built by Ionic.</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem meu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem meu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Premium designed icons for use in web, iOS, Android, and desktop apps. Support for SVG and web font. sempletely open source, MIT licensed and built by Ionic.</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem meu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem meu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu img">
+                        <p class="nome">Alisson</p>
+                        <img class="img" src="assent/Leonardo_Diffusion_soft_Chinese_ink_painting_soft_colors_rice_0.jpg" alt="">
+                        <p class="mensagem">Premium designed icons for use in web, iOS, Android, and desktop apps. Support for SVG and web font. sempletely open source, MIT licensed and built by Ionic</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Premium designed icons for use in web, iOS, Android, and desktop apps. Support for SVG and web font. sempletely open source, MIT licensed and built by Ionic.</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem meu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                    <div class="main-conversa-mensagens-mensagem seu text">
+                        <p class="nome">Alisson</p>
+                        <p class="mensagem">Olá, tudo bem</p>
+                    </div>
+                </div>
+                <div class="main-conversa-input">
+                    <input style="display: none;" type="file" name="img" id="img">
+                    <label class="imagem" for="img"><ion-icon name="image-outline"></ion-icon></label>
+                    <input class="mens" type="text" placeholder="Mensagem ..." id="inputText">
+                    <button class="enviar" id="bntEnviar"><ion-icon name="paper-plane-outline"></ion-icon></button>
+                </div>
+            </div>
+        </main>
+    </body>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var menu = document.getElementById("menu");
+        var usuarios = document.getElementById("usuarios");
+
+        menu.addEventListener("click", () => {
+            if(usuarios.classList[1] == "active") {
+                usuarios.classList.remove("active");
+                menu.classList.remove("active")
+            } else {
+                usuarios.classList.add("active");
+                menu.classList.add("active")
+            }
+        })
+
+
+        var conversaContent = document.getElementById("conversa_cont");
+        var alturaBarraNavegacao = window.innerHeight - document.documentElement.clientHeight;
+
+        conversaContent.style.height = 'calc(100vh - ' + alturaBarraNavegacao + 'px - 80px)';
+    </script>
+    <script>
+        var curtida = document.querySelectorAll('.curtida');
+
+        for (var i = 0; i < curtida.length; i++) {
+        curtida[i].addEventListener("click", function() {
+            if (this.classList.contains("sem")) {
+                this.classList.remove("sem");
+                this.classList.add("com");
+            } else {
+                this.classList.remove("com");
+                this.classList.add("sem");
+            }
+        });
+        }
+    </script>
+    <script>
+        var conversa = document.getElementById("conversa");
+
+        window.addEventListener("load", function() {
+            conversa.scrollTop = conversa.scrollHeight;
+        });
+        
+    </script>
+    <script src="innerHTML.js"></script>
+    <script>
+        const socket = io()
+        
+        let hash, nome
+
+        
+        //id
+        function id() {
+            const regex = /[?&]id=([^&#]*)/i
+            const url = window.location.href
+            const match = regex.exec(url)
+            const id = match && match[1]
+            return id
+        }
+        
+        socket.emit('identificacao', id())
+
+        socket.on('pessoas conectadas', (users) => {
+            const usersList = document.querySelector('#usuarios')
+            usersList.innerHTML = ''
+            let client
+            for (let i in users) 
+                if (users[i].socketID == socket.id) {
+                    mainUserDiv(users[i])
+                    client = i
+                    nome = users[i].nome
+                    break
+                }
+            
+            for (let i in users)
+                if (users[i].socketID != socket.id) {
+                    userDiv(users[i])
+                    const user = document.querySelector(`#id${i}`)
+                    user.addEventListener("click", function() {
+                        socket.emit('selecionar conversa', {remetente:users[client], destinatario:users[i]})
+                    })
+                }
+        })
+
+        socket.on('historico de conversa', (data) => {
+            const conversa = document.querySelector("#conversa")
+            conversa.innerHTML = ''
+            data.remetente = nome
+            hash = data.hash
+            console.log(data.mensagens)
+            for (let i in data.mensagens) {   
+                if (data.mensagens[i].remetente == id()) {
+                    mensagemRemetente(data.mensagens[i])
+                } else {
+                    mensagemDestinatari(data.mensagens[i])
+                }
+            }
+        })
+
+
+        function enviarMensagem(hash , id) {
+            const inputText = document.querySelector("#inputText").value
+
+            socket.emit('enviar mensagem', {
+                mensagem: inputText,
+                hash: hash,
+                remetente: id,
+                nome: nome
+            })
+        }
+        function enviar() {
+            enviarMensagem(hash, id())
+        }
+        const bntEnviar = document.querySelector("#bntEnviar")
+        bntEnviar.addEventListener("click", enviar)
+    </script>
+</html>
