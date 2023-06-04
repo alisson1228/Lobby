@@ -2,6 +2,7 @@ const express = require('express')
 const http = require('http')
 const socketIO = require('socket.io')
 const {v4: uuidv4} = require('uuid')
+const crypto = require('crypto')
 
 const app = express()
 const server = http.createServer(app)
@@ -14,6 +15,7 @@ app.use(express.static('chat'))
 
 //
 const pessoas = {}
+const conversas = {}
 //
 
 //login
@@ -48,7 +50,6 @@ function verificacao(req,res,next) {
         res.redirect('/login')
 }
 
-
 //
 
 app.get('/chat',verificacao, (req, res) => {
@@ -56,10 +57,8 @@ app.get('/chat',verificacao, (req, res) => {
 })
 
 
-
 sockets.on('connection', (socket) => {
-    console.log(socket.id)
-
+    //console.log(socket.id)
 
     socket.on('identificacao', (id) => {
         if (pessoas[id])
@@ -69,13 +68,60 @@ sockets.on('connection', (socket) => {
         sockets.emit('pessoas conectadas', pessoas)
     })
 
+    function gerarIDconversa({remetente:{ id:id1 }, destinatario:{ id:id2 }}) {
+        const sortID = [id1 , id2].sort()
+        const concatenacao = sortID.join()
+        const hashID = crypto.createHash('md5').update(concatenacao).digest('hex')
+        return hashID
+    }
+
+    socket.on('selecionar conversa', (data) => {
+        if (!conversas[gerarIDconversa(data)]) {
+            const {remetente:pessoa1, destinatario:pessoa2} = data
+            conversas[gerarIDconversa(data)] = {entre:[pessoa1 , pessoa2], mensagens:[]}
+        }
+        
+        socket.emit('historico de conversa', {
+            mensagens: conversas[gerarIDconversa(data)].mensagens,
+            hash: gerarIDconversa(data),
+            destinatario: data.destinatario.id
+        })
+    })
+
+    socket.on('enviar mensagem', ({mensagem, hash, remetente, nome}) => {
+        const destinatario = conversas[hash].entre[0].id == remetente? conversas[hash].entre[1].id : conversas[hash].entre[0].id
+        
+        conversas[hash].mensagens.push({
+            remetente: remetente,
+            nome: nome,
+            mensagem: mensagem
+        })
+
+        socket.emit('historico de conversa', {
+            mensagens: conversas[hash].mensagens,
+            hash: hash,
+            destinatario: destinatario
+        })
+
+        socket.to(destinatario).emit('historico de conversa', {
+            mensagens: conversas[hash].mensagens,
+            hash: hash,
+            destinatario: remetente
+        })
+    })
+
     socket.on('disconnect', () => {
         for (let i in pessoas) {
             if (pessoas[i].socketID === socket.id) {
-                console.log(pessoas[i] + 'excluido')
                 delete pessoas[i]
                 sockets.emit('pessoas conectadas', pessoas)
             }
+        }
+        
+        for (let i in conversas) {
+            if (conversas[i].entre[0].socketID == socket.id ||
+                conversas[i].entre[1].socketID == socket.id)
+                delete conversas[i] 
         }
     })
 })
