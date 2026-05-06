@@ -1,0 +1,129 @@
+.chat-input-container {
+  padding: 20px;
+  background: white;
+  border-top: 1px solid #e0e0e0;
+
+  form {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .image-preview {
+    margin-bottom: 15px;
+
+    .preview-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .btn-remove-image {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background: rgba(255, 255, 255, 0.9);
+        border: none;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ff4444;
+        font-size: 1.2rem;
+        transition: background 0.2s ease;
+
+        &:hover {
+          background: white;
+        }
+      }
+    }
+
+    input[type="url"] {
+      width: 100%;
+      padding: 10px 15px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+
+      &:focus {
+        outline: none;
+        border-color: #764ba2;
+      }
+    }
+  }
+
+  .input-wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    .btn-image {
+      background: none;
+      border: none;
+      color: #764ba2;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 5px;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background: rgba(118, 75, 162, 0.1);
+      }
+    }
+
+    .message-input {
+      flex: 1;
+      padding: 12px 18px;
+      border: 2px solid #e0e0e0;
+      border-radius: 25px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+
+      &:focus {
+        outline: none;
+        border-color: #764ba2;
+      }
+
+      &::placeholder {
+        color: #aaa;
+      }
+    }
+
+    .btn-send {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border: none;
+      color: white;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+}
